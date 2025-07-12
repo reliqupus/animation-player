@@ -30,8 +30,6 @@ function KEYFRAME.New(AnimationController, KeyframeObject)
 	self.Poses = _getPosesFromObject(self.Bones, KeyframeObject)
 	self.AppliedWeight = 0
 
-	print(self)
-
 	return self
 end
 
@@ -54,8 +52,9 @@ function KEYFRAME:GetPoses(poseName)
 end
 
 function KEYFRAME:SetPose(alpha)
+	--todo: batch these up as layers within @ animationcontroller
 	self.AppliedWeight = alpha
-	for name, pose in pairs(self.Poses) do
+	for name, pose in self.Poses do
 		local bone = self.Bones[name]
 		if bone then
 			bone.Transform = bone.Transform:Lerp(pose.CFrame, alpha)
@@ -64,7 +63,7 @@ function KEYFRAME:SetPose(alpha)
 end
 
 function KEYFRAME:ResetPose()
-	for name, pose in pairs(self.Poses) do
+	for name, pose in self.Poses do
 		local bone = self.Bones[name]
 		if bone then
 			bone.Transform = bone.Transform:Lerp(pose.CFrame, -self.AppliedWeight)
