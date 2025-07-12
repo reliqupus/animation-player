@@ -1,9 +1,10 @@
 # Project place file
 /animation-player.rbxlx
+/project.rbxl
 
 # Roblox Studio lock files
 /*.rbxlx.lock
 /*.rbxl.lock
 
-.toml
-.lock
+*.toml
+*.lock
